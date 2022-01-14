@@ -18,9 +18,7 @@ export const PostsService = {
       .then(res => {
         return res.data;
       })
-      .catch(e => {
-        console.log('AXIOS ERROR: ', e.request);
-      });
+      .catch(e => {});
   },
 
   getPostDetail: async (id: string): Promise<PostDetail> => {

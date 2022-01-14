@@ -30,15 +30,6 @@
         <true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>www.dummyapi.io</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-      			<true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

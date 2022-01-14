@@ -9,6 +9,7 @@
  */
 
 import React from 'react';
+import {AppState} from 'react-native';
 import {Provider} from 'react-redux';
 import generateStore from './src/store';
 import {Navigation} from './src/master/navigation';
@@ -26,7 +27,7 @@ export type AppDispatch = typeof store.dispatch;
 const App = () => {
   return (
     <Provider store={store}>
-      <Navigation />
+      {AppState.currentState === 'active' && <Navigation />}
     </Provider>
   );
 };
