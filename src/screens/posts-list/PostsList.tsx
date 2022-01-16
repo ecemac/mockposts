@@ -28,11 +28,10 @@ export const PostsList = () => {
   );
 
   const [refreshPage, setRefreshPage] = useState(INITIAL_PAGE);
-  const [loadMorePage, setLoadMorePage] = useState(INITIAL_PAGE);
+  const [loadMorePage, setLoadMorePage] = useState(INITIAL_PAGE + 1);
 
   useEffect(() => {
     dispatch(getPostListAction(INITIAL_PAGE, false, false));
-    setLoadMorePage(INITIAL_PAGE + 1);
   }, []);
 
   const renderItem = ({item}: ListRenderItemInfo<Posts>) => (
@@ -49,8 +48,8 @@ export const PostsList = () => {
 
   const handleRefresh = () => {
     if (refreshPage > 0) {
-      setRefreshPage(refreshPage - 1);
       dispatch(getPostListAction(refreshPage - 1, true, false));
+      setRefreshPage(refreshPage - 1);
       setLoadMorePage(refreshPage);
     }
   };

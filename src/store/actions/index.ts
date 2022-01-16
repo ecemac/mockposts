@@ -9,9 +9,11 @@ import {
   POST_LOADING,
   POST_SUCCESS,
   POST_ERROR,
+  POST_RESET,
   USER_LOADING,
   USER_SUCCESS,
   USER_ERROR,
+  USER_RESET,
   PostListDispatchTypes,
   PostDetailDispatchTypes,
   UserDetailDispatchTypes,
@@ -76,6 +78,13 @@ export const getPostDetailAction =
     }
   };
 
+export const postDetailReset =
+  () => (dispatch: Dispatch<PostDetailDispatchTypes>) => {
+    dispatch({
+      type: POST_RESET,
+    });
+  };
+
 export const getUserDetailAction =
   (id: string) => async (dispatch: Dispatch<UserDetailDispatchTypes>) => {
     try {
@@ -94,4 +103,11 @@ export const getUserDetailAction =
         type: USER_ERROR,
       });
     }
+  };
+
+export const userDetailReset =
+  () => (dispatch: Dispatch<UserDetailDispatchTypes>) => {
+    dispatch({
+      type: USER_RESET,
+    });
   };

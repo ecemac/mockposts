@@ -17,8 +17,12 @@ const StyledHeaderView = styled.View`
 `;
 
 const StyledButton = styled.TouchableOpacity`
-  font-size: 12px;
   flex: 1;
+`;
+
+const StyledButtonText = styled.Text`
+  font-size: 14px;
+  color: blue;
 `;
 
 const StyledTitleText = styled.Text`
@@ -38,7 +42,7 @@ export const Header: React.FC<IHeaderProps> = ({title, canGoBack}) => {
     <StyledHeaderView>
       {canGoBack && (
         <StyledButton onPress={() => nav.goBack()}>
-          <Text>Go Back</Text>
+          <StyledButtonText>Go Back</StyledButtonText>
         </StyledButton>
       )}
       <StyledTitleText style={{textAlign: 'center'}}>{title}</StyledTitleText>

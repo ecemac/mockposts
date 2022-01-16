@@ -2,6 +2,7 @@ import {
   USER_LOADING,
   USER_SUCCESS,
   USER_ERROR,
+  USER_RESET,
   UserDetailDispatchTypes,
 } from '../types';
 
@@ -35,6 +36,8 @@ const userDetailReducer = (
       };
     case USER_ERROR:
       return {...state, loading: false, error: true};
+    case USER_RESET:
+      return state;
     default:
       return state;
   }

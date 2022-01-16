@@ -2,6 +2,7 @@ import {
   POST_LOADING,
   POST_SUCCESS,
   POST_ERROR,
+  POST_RESET,
   PostDetailDispatchTypes,
 } from '../types';
 
@@ -35,6 +36,8 @@ const postDetailReducer = (
       };
     case POST_ERROR:
       return {...state, loading: false, error: true};
+    case POST_RESET:
+      return state;
     default:
       return state;
   }
