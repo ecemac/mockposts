@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {API_BASE_URL} from './config';
-import {Posts, PostDetail, UserDetail} from './types';
+import {PostsResponse, PostDetail, UserDetail} from './types';
 
 const client = axios.create({
   baseURL: `${API_BASE_URL}`,
@@ -12,7 +12,7 @@ const client = axios.create({
 });
 
 export const PostsService = {
-  getPostsList: async (page: number): Promise<Posts[]> => {
+  getPostsList: async (page: number): Promise<PostsResponse> => {
     return client
       .get(`post?page=${page}&limit=10`)
       .then(res => {

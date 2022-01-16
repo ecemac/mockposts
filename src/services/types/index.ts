@@ -35,3 +35,10 @@ export interface Posts {
 export interface PostDetail extends Posts {
   link: any;
 }
+
+export interface PostsResponse {
+  data: Posts[];
+  total: number;
+  page: number;
+  limit: number;
+}

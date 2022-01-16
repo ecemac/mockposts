@@ -1,6 +1,10 @@
 import {
   POST_LIST_LOADING,
   POST_LIST_SUCCESS,
+  POST_LIST_REFRESH_LOADING,
+  POST_LIST_REFRESH,
+  POST_LIST_LOAD_MORE_LOADING,
+  POST_LIST_LOAD_MORE,
   POST_LIST_ERROR,
   POST_LOADING,
   POST_SUCCESS,
@@ -13,21 +17,37 @@ import {
   UserDetailDispatchTypes,
 } from '../types';
 
-import {Posts, PostDetail, UserDetail} from '../../services/types';
+import {
+  Posts,
+  PostsResponse,
+  PostDetail,
+  UserDetail,
+} from '../../services/types';
 import {PostsService, UserService} from '../../services';
 import {Dispatch} from 'redux';
 
 export const getPostListAction =
-  (page: number) => async (dispatch: Dispatch<PostListDispatchTypes>) => {
+  (page: number, refresh: boolean, loadMore: boolean) =>
+  async (dispatch: Dispatch<PostListDispatchTypes>) => {
+    const res: PostsResponse = await PostsService.getPostsList(page);
+
     try {
       dispatch({
-        type: POST_LIST_LOADING,
+        type: refresh
+          ? POST_LIST_REFRESH_LOADING
+          : loadMore
+          ? POST_LIST_LOAD_MORE_LOADING
+          : POST_LIST_LOADING,
+        payload: res,
       });
-      const res: Posts[] = await PostsService.getPostsList(page);
 
       dispatch({
-        type: POST_LIST_SUCCESS,
-        payload: res,
+        type: refresh
+          ? POST_LIST_REFRESH
+          : loadMore
+          ? POST_LIST_LOAD_MORE
+          : POST_LIST_SUCCESS,
+        payload: res.data,
       });
     } catch (e) {
       dispatch({

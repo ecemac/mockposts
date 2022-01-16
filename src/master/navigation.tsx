@@ -1,18 +1,30 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {PostsList} from '../screens/PostsList';
+import {PostsList} from '../screens/postsList/PostsList';
+import {PostDetail} from '../screens/postDetail/PostDetail';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  PostDetail: {id: string};
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-          name="home"
+          name="Home"
           component={PostsList}
-          options={{title: 'MOCKPOSTS'}}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="PostDetail"
+          component={PostDetail}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
