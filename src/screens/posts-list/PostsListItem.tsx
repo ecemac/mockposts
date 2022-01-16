@@ -16,7 +16,7 @@ const ContainerView = styled.View`
 
 const PostImage = styled.Image`
   width: 100%;
-  height: 300px;
+  height: 400px;
   margin-bottom: 10px;
 `;
 

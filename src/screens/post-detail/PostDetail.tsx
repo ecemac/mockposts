@@ -24,7 +24,7 @@ const StyledContainerView = styled.View`
 
 const PostImage = styled.Image`
   width: 100%;
-  height: 500px;
+  height: 450px;
   margin-bottom: 10px;
 `;
 
