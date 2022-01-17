@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {PostsList} from '../screens/posts-list/PostsList';
+import {MemoizedPostsList} from '../screens/posts-list/PostsList';
 import {PostDetail} from '../screens/post-detail/PostDetail';
 import {UserDetail} from '../screens/user-detail/UserDetail';
 
@@ -20,7 +20,7 @@ export const Navigation = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
-          component={PostsList}
+          component={MemoizedPostsList}
           options={{headerShown: false}}
         />
         <Stack.Screen

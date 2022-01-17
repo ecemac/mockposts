@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, memo} from 'react';
 import {ListRenderItemInfo, RefreshControl} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useAppSelector} from '../../store/hooks';
@@ -8,18 +8,10 @@ import {Posts} from '../../services/types';
 import {PostsListItem} from './PostsListItem';
 import {Loading} from '../../components/Loading';
 import {Error} from '../../components/Error';
-import styled from 'styled-components/native';
+import {StyledSafeAreaView} from '../common-styling';
+import {StyledFlatlist} from './styles';
 
 const INITIAL_PAGE = 20;
-
-const StyledSafeAreaView = styled.SafeAreaView`
-  background-color: #fff;
-`;
-
-const StyledFlatlist = styled.FlatList`
-  padding: 10px;
-  background-color: #efefef;
-`;
 
 export const PostsList = () => {
   const dispatch = useDispatch();
@@ -64,7 +56,7 @@ export const PostsList = () => {
   return (
     <StyledSafeAreaView>
       <Header title={'Home'} />
-      {posts && (
+      {posts && !loading && (
         <StyledFlatlist<React.ElementType>
           data={posts}
           keyExtractor={(item: Posts) => item.id}
@@ -82,3 +74,5 @@ export const PostsList = () => {
     </StyledSafeAreaView>
   );
 };
+
+export const MemoizedPostsList = React.memo(PostsList);

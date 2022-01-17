@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../master/navigation';
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
 const UserContainerTouchable = styled.TouchableOpacity`

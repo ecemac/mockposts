@@ -1,5 +1,5 @@
+import {format} from 'date-fns';
 import React, {useEffect} from 'react';
-import {Text} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useAppSelector} from '../../store/hooks';
 import {getUserDetailAction, userDetailReset} from '../../store/actions';
@@ -9,16 +9,14 @@ import {RootStackParamList} from '../../master/navigation';
 import {Header} from '../../components/Header';
 import {Loading} from '../../components/Loading';
 import {Error} from '../../components/Error';
-import styled from 'styled-components/native';
-
-const StyledSafeAreaView = styled.SafeAreaView`
-  background-color: #fff;
-`;
-
-const StyledContainerView = styled.View`
-  background-color: #efefef;
-  padding: 10px;
-`;
+import {StyledSafeAreaView} from '../common-styling';
+import {
+  StyledContainerView,
+  UserImage,
+  UserInfoView,
+  UserInfoTitleText,
+  UserInfoText,
+} from './styles';
 
 export const UserDetail: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,14 +32,41 @@ export const UserDetail: React.FC = () => {
     };
   }, []);
 
-  console.log('data: ', data);
-
   return (
     <StyledSafeAreaView>
       <Header title="User Detail" canGoBack />
       {data && !loading && (
         <StyledContainerView>
-          <Text>USER DETAIL</Text>
+          <UserImage source={{uri: data.picture}} />
+          <UserInfoView>
+            <UserInfoTitleText>Full Name: </UserInfoTitleText>
+            <UserInfoText>
+              {data.title} {data.firstName} {data.lastName}
+            </UserInfoText>
+          </UserInfoView>
+          <UserInfoView>
+            <UserInfoTitleText>Email: </UserInfoTitleText>
+            <UserInfoText>{data.email}</UserInfoText>
+          </UserInfoView>
+          <UserInfoView>
+            <UserInfoTitleText>Date of Birth: </UserInfoTitleText>
+            <UserInfoText>
+              {format(new Date(data.dateOfBirth), 'dd MMM yyyy')}
+            </UserInfoText>
+          </UserInfoView>
+          <UserInfoView>
+            <UserInfoTitleText>Last Updated: </UserInfoTitleText>
+            <UserInfoText>
+              {format(new Date(data.updatedDate), 'dd MMM yyyy')}
+            </UserInfoText>
+          </UserInfoView>
+          <UserInfoView>
+            <UserInfoTitleText>Address: </UserInfoTitleText>
+            <UserInfoText>
+              {data.location.street} {data.location.city}, {data.location.state}
+              /{data.location.country}
+            </UserInfoText>
+          </UserInfoView>
         </StyledContainerView>
       )}
       {loading && <Loading />}

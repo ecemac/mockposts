@@ -25,7 +25,7 @@ import {
   PostDetail,
   UserDetail,
 } from '../../services/types';
-import {PostsService, UserService} from '../../services';
+import {PostsService, UserService} from '../../services/api-service';
 import {Dispatch} from 'redux';
 
 export const getPostListAction =
